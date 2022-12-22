@@ -1,0 +1,82 @@
+.quickCartWrapper {
+    text-align: center;
+    margin: 30px 10px 0 -200px; 
+    padding: 20px;
+    width: 300px;
+    height: auto;
+    background-color: white;
+    color: black;
+    z-index: 3; 
+    border-radius: 11px;
+    border: 1px solid grey;
+}
+
+.cartGrid {
+    display: flex;
+    flex-direction: column;
+    /* width: fit-content; */
+}
+
+.bookCartCard {
+    display: flex;
+    width: fit-content;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 15px;
+}
+
+.bookCartImg {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.bookCartDetailWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.titleAndAuthorWrapper {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.titleAndAuthorWrapper div {
+    white-space: nowrap;
+}
+
+.bookCartTitle {
+    margin: 0 10px 3px 0; 
+}
+
+.bookCartAuthor {
+    margin: 0 10px 3px 0; 
+}
+
+.priceAndQuantityWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bookCartPrice{
+    margin: auto;
+    white-space: nowrap; 
+    align-items: right;
+}
+
+.bookCartSpace {
+    margin: auto;
+    padding: 0 10px 0 10px; 
+}
+
+.bookCartQuantity {
+    margin: auto;
+}
+
+.goToCartButton {
+    text-align: left;
+}
+

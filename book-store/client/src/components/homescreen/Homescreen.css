@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+.homeBigWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+ 
+.homeContainer {
+    margin-left: 300px;
+    margin-top: 30px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.homeWrapper { 
+    width: 1500px;
+    margin-top: -5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.homeTitle {
+
+}
+
+.cartWrapper {
+    width: 25px;
+    height: 25px;
+    z-index: 2; 
+}
+
+.cartImg {
+    width: 100%;
+    cursor: pointer;
+}
+
+.cartBubbleOrange {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: orange;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    padding-top: 2px;
+    margin-top: -40px;
+    margin-left: 20px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.7);
+}
+
+.readForLifeWrapper{
+    position:relative;
+    margin-top: 20px;
+    height: 300px;
+    width: 1200px;
+    border-radius: 10px;
+}
+
+.readForLifeImg {
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+    overflow: hidden;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+.readForLifeText {
+    position: absolute;
+    top: 32px;
+    left: 36px;
+    font-size: 45px;
+    color: white;
+    font-weight: 700;
+}

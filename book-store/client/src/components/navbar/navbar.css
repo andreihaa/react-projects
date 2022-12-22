@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+.navbar {
+    width: auto;
+    background-color: rgb(12, 189, 189);
+    height: 100%;
+    min-height: 500px;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.logoImg {
+    background-color: black;
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 5px;
+}
+
+.navbarLinks {
+    margin-top: 50px;
+}
+
+.home{
+    margin: 0 30px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+
+.homeLink {
+    text-decoration: none;
+}
+
+.homeText {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.discover{
+    margin: 0 30px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px 0 0 0;
+}
+
+.discoverText {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.recommendations{
+    margin: 0 30px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px 0 0 0;
+}
+
+.recommendationsText {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.authors{
+    margin: 0 30px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px 0 0 0;
+}
+
+.authorsText {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.favorites{
+    margin: 0 30px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px 0 0 0;
+}
+
+.favoritesText {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.manageBooks{
+    margin: 0 30px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px 0 0 0;
+}
+
+.manageBooksText {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.manageBooksImg {
+    color: white;
+}
+
+.manageBookLink{
+    text-decoration: none;
+    color: white;
+}

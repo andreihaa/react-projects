@@ -1,0 +1,126 @@
+.bookWrapper{ 
+    width: 1200px;
+    height: 475px;
+    margin-top: 50px;
+}
+
+.bookGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; 
+}
+
+.bookCard{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    max-height: 130px;
+    background-color: white;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px #888888;
+    border: 0.2px solid #9999; 
+} 
+
+.bookCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+}
+
+.bookDetailWrapper {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 200px;
+    padding-right: 10px;
+    justify-content: space-between;
+    overflow: hidden;
+    inline-size: 150px;
+}
+
+.bookImg {
+    margin-left: 7px;
+    width: 100%;
+    height: 100%;
+    margin-top: -5px;
+    transform: translateY(-1%);
+}
+
+.bookTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    width: 100px;
+    /* word-wrap: break-word; */
+    white-space: nowrap;
+}
+
+.link {
+    text-decoration: none;
+    color: grey;
+}
+
+.addToCartButton {
+    width: 100px;
+    height: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(12, 189, 189);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+/* 
+.animated {
+    overflow: hidden;
+    width: 11rem;
+    white-space: nowrap;
+  }
+  
+  .animated > * {
+    display: inline-block;
+    position: relative;
+    animation: 3s linear 0s infinite alternate move;
+  }
+  
+  .animated > *.min {
+    min-width: 100%;
+  }
+  
+  @keyframes move {
+    0%,
+    25% {
+      transform: translateX(0%);
+      left: 0%;
+    }
+    75%,
+    100% {
+      transform: translateX(-100%);
+      left: 100%;
+    }
+  }
+  
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .animated {
+    font-size: 2rem;
+    font-family: sans-serif;
+    border: 0.1rem solid black;
+    margin: 1rem;
+  }
+  
+  .animated > * {
+    box-sizing: border-box;
+    padding: .5rem 1rem;
+  } */

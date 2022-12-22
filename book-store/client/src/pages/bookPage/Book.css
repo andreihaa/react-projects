@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+.singleBookContainer{
+    background-color: rgba(192, 192, 192, 0.342);
+    height: 100vh;
+}
+
+.singleBookGrid {
+    margin: 0px 100px 100px 300px;
+    padding-top: 100px;
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    column-gap: 0px;
+}
+
+.imgSingleBook {
+    width: 100%;
+}
+
+.singleBookDetails{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.bookImportantDetails {
+    border-bottom:1px solid grey;
+    height: min-content;
+}
+
+.singleBookTitle {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.singleBookAuthor {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.singleBookDescription {
+    margin-bottom: 20px;
+}
+
+.tableDiv {
+    border-bottom:1px solid grey;
+}
+
+table{
+    margin-top: 10px;
+    width: 900px;
+}
+
+td {
+    width: 10px;
+    line-height: 25px;
+    margin-left: 10px;
+}
+
+.singleBookPrice {
+    margin-top: 20px;
+}

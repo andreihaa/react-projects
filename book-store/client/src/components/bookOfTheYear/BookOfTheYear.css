@@ -1,0 +1,48 @@
+.bookOfTheYearWrapper {
+    margin-top: 100px;
+    margin-left: -200px;
+    height: 500px;
+    width: 150px; 
+    z-index: 1;
+}
+
+.bookOfTheYearGrid {
+    height: 320px;
+    width: 250px; 
+    display: inline-block;
+    background-color: white;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.025);
+    border-radius: 11px;
+    border: 0.2px solid #9999; 
+    box-shadow: 1px 1px #888888;
+    z-index: 1;
+}
+
+.bookOfTheYearGrid > p {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: grey;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.bookOfTheYearCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1px;
+    height: 90px;
+    width: 250px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.bookOfTheYearImg {
+    width: 40%;
+    height: 75%;
+    margin-left: 10px;
+}
+
+.bookOfTheYearTitle {
+    margin-left: -50px;
+}
