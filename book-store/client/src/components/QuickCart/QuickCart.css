@@ -2,7 +2,7 @@
     text-align: center;
     margin: 30px 10px 0 -200px; 
     padding: 20px;
-    width: 300px;
+    width: 400px;
     height: auto;
     background-color: white;
     color: black;
@@ -19,7 +19,7 @@
 
 .bookCartCard {
     display: flex;
-    width: fit-content;
+    width: auto;
     border-bottom: 1px solid lightgrey;
     margin-bottom: 15px;
 }
@@ -31,16 +31,20 @@
 }
 
 .bookCartDetailWrapper {
+    width: 400px;
     display: flex;
     justify-content: space-between;
+    border: 1px solid red;
 }
 
 .titleAndAuthorWrapper {
     margin: auto;
+    margin-left: 5px;
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    border: 1px solid blue;
 }
 
 .titleAndAuthorWrapper div {
@@ -56,9 +60,11 @@
 }
 
 .priceAndQuantityWrapper {
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 1px solid green;
 }
 
 .bookCartPrice{
@@ -76,7 +82,49 @@
     margin: auto;
 }
 
-.goToCartButton {
-    text-align: left;
+.totalPrice {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
 }
+
+.goToCartButton {
+    width: 100px;
+    height: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(12, 189, 189);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.minusButton{
+    width:15px;
+    height: 15px;
+    margin: auto;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(12, 189, 189);
+    color: white;
+    cursor: pointer; 
+}
+
+.plusButton{
+    width:15px;
+    height: 15px;
+    margin: auto;
+    margin-left: 5px;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    background-color: rgb(12, 189, 189);
+    color: white;
+    cursor: pointer;
+}
+
+
 

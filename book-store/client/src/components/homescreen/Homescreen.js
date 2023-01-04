@@ -4,15 +4,16 @@ import cart from "../../img/cart.png"
 import Books from '../Books/Books'
 import BookOfTheYear from '../bookOfTheYear/BookOfTheYear'
 import Search from '../search/Search'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import QuickCart from '../QuickCart/QuickCart'
+import { CartContext } from "../../components/context/CartContext";
 
 
 const Homescreen = (props) => {
     const [typedInput, setTypedInput] = useState('');
     const [openCart, setOpenCart] = useState(false); 
     const {productsCount} = props; 
-
+    const {totalQuantity} = useContext(CartContext);
     return (
         <div className='homeBigWrapper'>
             <div className='homeContainer'>
@@ -21,7 +22,7 @@ const Homescreen = (props) => {
                         <h2 className='homeTitle'>Home</h2>
                         <div className='cartWrapper'>
                             <img src={cart} className='cartImg' onClick={()=>setOpenCart(!openCart)}/>
-                            <div className='cartBubbleOrange'>3</div>
+                            <div className='cartBubbleOrange'>{totalQuantity}</div>
                             {openCart && <QuickCart count={productsCount}/>}
                         </div>
                     </div>

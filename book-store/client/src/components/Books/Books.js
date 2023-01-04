@@ -1,11 +1,13 @@
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { CartContext } from "../../components/context/CartContext";
 import "./books.css"
 
 const Books = (props) => {
     const { data, loading } = useFetch("/books");
     const {searchInput} = props; 
+    const { addProduct} = useContext(CartContext);
 
     const filteredUsers = useMemo(
         () => data.filter((book) => {
@@ -47,6 +49,7 @@ const Books = (props) => {
                 currentBook.quantity= currentBook.quantity + 1; 
         }
         localStorage.setItem('cartProduct', JSON.stringify(currentCartProducts));
+        addProduct(book)
     }
 
     return (
