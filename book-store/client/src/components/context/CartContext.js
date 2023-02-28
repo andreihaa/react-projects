@@ -1,15 +1,13 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import useFetch from "../../hooks/useFetch";
 
 const INITIAL_STATE = {
-    books:  JSON.parse(localStorage.getItem("cartProduct")) ||  [],
+    books: null,
     cartLoading: false,
     error: null,
     total: 0,
-    totalQuantity: 0
+    totalQuantity: 0,
 };
-
-
 
 export const CartContext = createContext(INITIAL_STATE);
 
@@ -17,7 +15,7 @@ const CartReducer = (state, action) => {
   switch (action.type) {
     case "CART_FETCHING_START":
       return {
-        books: [],
+        books: null,
         total: 0,
         totalQuantity: 0, 
         cartLoading: true,
@@ -43,6 +41,22 @@ const CartReducer = (state, action) => {
         totalQuantity: 0, 
         error: action.payload,
       };
+    case "CLEAR_CART":
+      return {
+        books: [],
+        total: 0,
+        totalQuantity: 0, 
+        cartLoading: false,
+        error: null,
+      };
+    case "IS_FAVORITE":
+      return {
+        books: action.payload.products,
+        total: action.payload.total,
+        totalQuantity: action.payload.totalQuantity, 
+        cartLoading: false,
+        error: null,
+      };
     default:
       console.log("INITIAL STATE")
       return state;
@@ -52,7 +66,7 @@ const CartReducer = (state, action) => {
 
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CartReducer, INITIAL_STATE);
-  const { data, loading } = useFetch("/books");
+  const { data, loading : booksLoading } = useFetch("/books");
   
   let returnedProductsOnCart = []; 
   let total = 0; 
@@ -71,15 +85,18 @@ export const CartContextProvider = ({ children }) => {
     }
   let currentCartProducts = getFromLocalStorage();
 
-  // const updateLocalStorage = () => {
-  //   let localStorageCart = state.books.map((book) => {
-  //     return {
-  //       id: book.data._id,
-  //       quantity: book.quantity 
-  //     }
-  //   })
-  //   localStorage.setItem('cartProduct', JSON.stringify(localStorageCart))
-  // }
+  const updateLocalStorage = (books) => {
+    if(!books){
+      return; 
+    }
+    let localStorageCart = books.map((book) => {
+      return {
+        id: book.data._id,
+        quantity: book.quantity 
+      }
+    })
+    localStorage.setItem('cartProduct', JSON.stringify(localStorageCart))
+  }
 
   const increaseProductToCart = (product) => {
     const updatedProducts = state.books.map((book) => {
@@ -96,7 +113,6 @@ export const CartContextProvider = ({ children }) => {
         totalQuantity: state.totalQuantity + 1,
       }
     })
-    // updateLocalStorage()
   }
 
   const decreaseProductToCart = (product) => {
@@ -105,7 +121,6 @@ export const CartContextProvider = ({ children }) => {
     }
     else{
       const updatedProducts = state.books.map((book) => {
-        console.log('increasedProduct', book)
         if(product.data._id === book.data._id){
           book.quantity--;
         }
@@ -119,7 +134,6 @@ export const CartContextProvider = ({ children }) => {
           totalQuantity: state.totalQuantity - 1,
         }
       })
-      // updateLocalStorage()
     }
   }
 
@@ -137,12 +151,10 @@ export const CartContextProvider = ({ children }) => {
         totalQuantity: state.totalQuantity - 1,
       }
     })
-    // updateLocalStorage()
   }
 
   const addProduct = (product) => {
     let bookFound = state.books.filter((item)=>item.data._id===product._id)[0];
-    console.log('bookFount', bookFound)
     if(bookFound){
       increaseProductToCart(bookFound); 
     }
@@ -159,11 +171,21 @@ export const CartContextProvider = ({ children }) => {
           totalQuantity: state.totalQuantity + 1,
         }
       })
-      // updateLocalStorage()
     }
   }
 
+  const clearCart = () =>{
+    dispatch({
+      type: "CLEAR_CART",
+    })
+    localStorage.clear();
+  }
+
+
   useEffect(() => { 
+    if(booksLoading){
+      return; 
+    }
     dispatch({
       type: 'CART_FETCHING_START', 
     })
@@ -185,23 +207,12 @@ export const CartContextProvider = ({ children }) => {
         total: total,
         totalQuantity: totalQuantity
       }
-    })   
+    }) 
   },[data])
 
-  // useEffect(() => {
-  //   console.log('here')
-  //   console.log(state.books)
-  //   let localStorageCart = [];
-  //   if(state.books.length > 0){
-  //     localStorageCart = state.books.map((book) => {
-  //       return {
-  //         id: book.data._id,
-  //         quantity: book.quantity 
-  //       }
-  //     })
-  //   }
-  //   localStorage.setItem("cartProduct", JSON.stringify(localStorageCart));
-  // }, [state.books])
+  useEffect(() => {
+    updateLocalStorage(state.books);
+  }, [state.books])
 
   return (
     <CartContext.Provider
@@ -215,6 +226,7 @@ export const CartContextProvider = ({ children }) => {
         decreaseProductToCart,
         addProduct,
         removeProduct,
+        clearCart,
         dispatch,
       }}
     >

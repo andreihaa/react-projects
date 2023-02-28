@@ -7,9 +7,8 @@
 .navbar {
     width: auto;
     background-color: rgb(12, 189, 189);
-    height: 100%;
-    min-height: 500px;
-    position: absolute;
+    height: 908px;
+    position: fixed;
     top: 0;
     z-index: 3;
     border-top-right-radius: 25px;

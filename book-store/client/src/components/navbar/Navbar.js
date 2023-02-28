@@ -7,6 +7,8 @@ import author from "../../img/user.svg"
 import favorites from "../../img/heart.svg"
 import manageBooks from "../../img/book-open.svg"
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+
 
 
 export const Navbar = () => {
@@ -23,6 +25,21 @@ export const Navbar = () => {
         }
         return user; 
     }
+
+    console.log(axios.defaults.baseURL) 
+
+    const checkIfAdmin = async () => {
+        console.log("Sending request to /isAdmin");
+        try {
+            const response = await axios.get('/isAdmin');
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+    checkIfAdmin();
+    // console.log(admin);
 
     const handleClick = () =>{
         let loggedInUser = getFromLocalStorage(); 
@@ -60,10 +77,12 @@ export const Navbar = () => {
                         <img className="authorImg" src={author} alt="author svg"/>
                         <div className="authorsText">Authors</div>
                     </div>
-                    <div className="favorites">
-                        <img className="favoritesImg" src={favorites} alt="favourites svg"/>
-                        <div className="favoritesText">Favorites</div>
-                    </div>
+                    <Link to={`/favorites`} className="homeLink">
+                        <div className="favorites">
+                            <img className="favoritesImg" src={favorites} alt="favourites svg"/>
+                            <div className="favoritesText">Favorites</div>
+                        </div>
+                    </Link>
                     <div className="manageBooks">
                         <img className="manageBooksImg" src={manageBooks} alt="manage booking svg"/>
                         <div className="manageBooksText" onClick={handleClick}>Manage Book</div>

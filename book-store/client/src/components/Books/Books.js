@@ -1,62 +1,28 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState} from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { CartContext } from "../../components/context/CartContext";
 import "./books.css"
+import { FavoriteContext } from "../context/FavoriteContext";
 
 const Books = (props) => {
     const { data, loading } = useFetch("/books");
-    const {searchInput} = props; 
-    const { addProduct} = useContext(CartContext);
+    const { searchInput } = props; 
+    const { addProduct } = useContext(CartContext);
+    const { toggleFavorite, books } = useContext(FavoriteContext);
 
-    const filteredUsers = useMemo(
+    const filteredBooks = useMemo(
         () => data.filter((book) => {
             return book.title.toLowerCase().includes(searchInput.toLowerCase());
           }),
         [searchInput, data]
     );
 
-    function getFromLocalStorage(){
-        let currentCartProducts;
-        let localStorageCartString = localStorage.getItem('cartProduct'); 
-        if(!localStorageCartString){
-            currentCartProducts = []
-        }
-        else{
-            currentCartProducts = JSON.parse(localStorageCartString);
-        }
-        return currentCartProducts; 
-    }
-
-    const handleAddToCart = (book) =>{
-        let currentCartProducts = getFromLocalStorage(); 
-        let productAndQuantity;
-
-        let bookExist = currentCartProducts.some((item) => {
-            return item.id === book._id;
-        })
-        if(!bookExist){
-            productAndQuantity = {
-                id: book._id,
-                quantity: 1,
-            } 
-            currentCartProducts.push(productAndQuantity);
-        }
-        else{
-            const currentBook = currentCartProducts.filter((item) => {
-                return item.id === book._id; 
-            })[0]; 
-                currentBook.quantity= currentBook.quantity + 1; 
-        }
-        localStorage.setItem('cartProduct', JSON.stringify(currentCartProducts));
-        addProduct(book)
-    }
-
     return (
         <div className="bookWrapper">
             {loading? ("loading") : 
                 (<div className="bookGrid">
-                    {filteredUsers.map(( book, i ) =>{
+                    {filteredBooks.map(( book, i ) =>{
                     return (
                             <div className="bookCard" key={i}>  
                                 <Link to={`/book/${book._id}`} className="link">   
@@ -66,7 +32,10 @@ const Books = (props) => {
                                     <div className="bookTitle animated">{book.title}</div>
                                     <div>{book.author}</div>
                                     <div>{book.price} $</div>
-                                    <button onClick={() => handleAddToCart(book)} className="addToCartButton">Add to cart</button>
+                                    <button onClick={() => addProduct(book)} className="addToCartButton">Add to cart</button>
+                                    <button onClick={() => toggleFavorite(book)} className="favouriteButton">
+                                        {books.find(b => b._id === book._id)?.isFavorite === true ? <div className="heartRed">❤️</div> : <div className="heartWhite">🤍</div>}
+                                    </button>
                                 </div>
                             </div>)
                         })

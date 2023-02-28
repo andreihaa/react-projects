@@ -8,12 +8,17 @@ const BookOfTheYear = () => {
             return book; 
         }
     })
+
+    const highestRating = filteredData.sort(function(a,b) {
+        return b.rating - a.rating; 
+    })
+
     return (
         <div className='bookOfTheYearWrapper'> 
             {loading? ("loading") : 
                 (<div className="bookOfTheYearGrid">
                     <p>Books of the Year</p>
-                    {data && filteredData.map(( book, i ) =>{
+                    {data && highestRating.map(( book, i ) =>{
                             return <div className="bookOfTheYearCard" key={i}>       
                                 <img className="bookOfTheYearImg" src={book.photo}/>
                                 <div className="bookOfTheYearDetailWrapper">

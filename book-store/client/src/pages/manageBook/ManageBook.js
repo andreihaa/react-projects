@@ -7,14 +7,13 @@ import search from '../../img/search-black.png'
 import axios from 'axios'
 import { useState } from "react";
 import AddBook from "./AddBook";
+import EditBook from "./EditBook";
 
 const ManageBook = () => {
-    const { data, setData, loading, error } = useFetch("/books");
+    const { data, setData, loading, reFetch } = useFetch("/books");
     const [isVisible, setIsVisible] = useState(false);
     const [openEdit, setOpenEdit] = useState(false); 
-    const [editTitle, setEditTitle] = useState('');
-    const [editPrice, setEditPrice] = useState(0);
-    const [editAuthor, setEditAuthor] = useState('');
+    const [clickedBook, setClickedBook] = useState()
 
     const handleDelete = async (id) =>{
         await axios.delete(`/books/${id}`);
@@ -24,7 +23,6 @@ const ManageBook = () => {
         setData(newBookList);
     }
 
-
     const handleAdd = () => {
         setIsVisible(true)
     }
@@ -33,14 +31,9 @@ const ManageBook = () => {
         setIsVisible(false)
     }
 
-    const handleEditButton = async (aBook) => {
-        console.log(aBook)
-        const response = await axios.put(`/books/${aBook._id}`, {
-            title: editTitle ? editTitle : data.title,
-            author: editAuthor ? editAuthor : data.author,
-            price: editPrice ? editPrice : data.price
-        });
-        setOpenEdit(false);
+    const handleEditClick = (book) => {
+        setOpenEdit(!openEdit); 
+        setClickedBook(book);
     }
 
     return (
@@ -50,7 +43,7 @@ const ManageBook = () => {
             <div className="pageWrapper">
                 <div className="inputWrapper">
                     <input type="text" placeholder="search" className="searchBook"/>
-                    <img src={search} className="searchBookIcon"/>
+                    <img src={search} className="searchBookIcon" alt='search book icon'/>
                     <button className="addButton" onClick={handleAdd}>+ Add Book</button>
                 </div>
                 <div className="tableHead">
@@ -64,7 +57,7 @@ const ManageBook = () => {
                     (<div className="manageBookGrid">
                         {data && data.map(( _book, i ) =>{
                         return <div className="manageBookCard" key={i}>       
-                                    <img className="manageBookImg" src={_book.photo}/>
+                                    <img className="manageBookImg" src={_book.photo} alt='manage book icon'/>
                                     <div className="manageBookDetailWrapper">
                                         <div className="manageBookTitle">{_book.title}</div>
                                         <div className="manageBookAuthor">{_book.author}</div>
@@ -72,31 +65,18 @@ const ManageBook = () => {
                                     </div>
                                     <div className="actions">
                                         <span className="editModal">
-                                            <img src={edit} className="editImg" onClick={()=>setOpenEdit(!openEdit)}/>
-                                            {openEdit && 
-                                                <div className="editContainer">
-                                                    <div className="editOption">
-                                                        <div className="editOptionTitle">Title</div>
-                                                        <input 
-                                                        defaultValue={_book.title}
-                                                        placeholder="book title" onChange={(e) => setEditTitle(e.target.value)}/>
-                                                    </div>
-                                                    <div className="editOption">
-                                                        <div className="editOptionAuthor">Author</div>
-                                                        <input 
-                                                        defaultValue={_book.author}
-                                                        placeholder="book Author" onChange={(e) => setEditAuthor(e.target.value)}/>
-                                                    </div>
-                                                    <div className="editOption">
-                                                        <div className="editOptionPrice">Price</div>
-                                                        <input 
-                                                        defaultValue={_book.price}
-                                                        placeholder="book Price" onChange={(e) => setEditPrice(e.target.value)}/>
-                                                    </div>
-                                                    <button className="editButton" onClick={() => {handleEditButton(_book)}}>Add Changes</button>
-                                                </div>}
+                                            <img src={edit} 
+                                                className="editImg" 
+                                                onClick={()=>{handleEditClick(_book)}} 
+                                                alt='button for edit'/>
+                                            {openEdit && <EditBook 
+                                                openEdit={openEdit}
+                                                product={clickedBook}
+                                                setOpenEdit={setOpenEdit}
+                                                handleSubmit={() => reFetch()}
+                                            />}
                                         </span>
-                                        <img src={trash} className="deleteImg" onClick={() => {handleDelete(_book._id)}}/>
+                                        <img alt='icon for delete' src={trash} className="deleteImg" onClick={() => {handleDelete(_book._id)}}/>
                                     </div>
                                 </div>
                             })

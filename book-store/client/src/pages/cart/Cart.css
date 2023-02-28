@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+.cartBigWrapper {
+    background-color: rgba(192, 192, 192, 0.342);
+    height: 100vh; 
+}
+
+.cartPageContainer {
+    width: fit-content;
+    height: 700px;
+    margin: auto; 
+    top: 50%;
+    left: 50%;
+    position:absolute;
+    padding: 20px; 
+    border: 1px solid grey;
+    border-radius: 11px;
+    background-color: white;
+    transform: translate(-40%, -50%);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    z-index: 100;
+}
+
+.cartPageWrapper {
+    width: fit-content;
+    /* height: 700px;
+    margin: auto; 
+    margin-top: 50px; 
+    padding: 20px; 
+    border: 1px solid grey;
+    border-radius: 11px;
+    background-color: white;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7); */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 85%
+}
+
+.cartPageWrapper::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 18px;
+}
+
+.cartPageWrapper::-webkit-scrollbar-thumb {
+    border-radius: 11px;
+    background-color: rgb(12, 189, 189);
+}
+
+.cartPageWrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(6, 100, 100);
+}
+
+.cartPageWrapper::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.cartPageWrapper::-webkit-scrollbar-track {
+    border-radius: 11px;
+    background-color: white;
+}
+
+.cartPageWrapper::-webkit-scrollbar-button {
+    display: none;
+}
+
+.bookCartPageCard {
+    display: flex;
+    width: 800px;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.bookCartPageCard .removeIcon{
+    visibility: hidden;
+}
+
+.bookCartPageCard:hover .removeIcon {
+    visibility: visible;
+}
+
+.bookCartImg{
+    cursor: pointer;
+}
+
+.priceQuantityRemoveWrapper{
+    margin-top: auto; 
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.removeIcon {
+    cursor: pointer;
+}
+
+.totalAndButtonWrapper{
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    margin: 20px auto;
+}
+
+.totalPriceCartPage {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 5px; 
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px 0;
+}
+
+.buttonWrapperCartPage {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.totalPriceTextCartPage {
+
+}
+
+.totalPriceNumberCartPage {
+
+}
+
+.goToCartButton:hover {
+    background-color: rgb(6, 100, 100);
+}

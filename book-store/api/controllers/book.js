@@ -1,6 +1,7 @@
 import Book from "../models/Book.js";
 
 export const createBook = async (req,res, next ) => {
+    console.log(req.body)
     const newBook = new Book(req.body); 
     try{
         const savedBook = await newBook.save();

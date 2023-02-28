@@ -9,7 +9,11 @@ const BookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description:{
+    genre: {
+        type: [],
+        required: true
+    },
+    description:{ 
         type: String, 
         required: true
     },

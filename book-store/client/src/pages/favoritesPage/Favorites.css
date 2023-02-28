@@ -1,0 +1,19 @@
+.inputFavoriteWrapper {
+    
+}
+
+.searchFavoriteBook {
+    margin-left: 10px;
+    height: 25px;
+    width: 500px;
+    padding-left: 30px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.searchBookFavoritePageIcon {
+    margin-left: -490px;
+    margin-top: 5px;
+    width: 1%;
+    height: 10%;
+}

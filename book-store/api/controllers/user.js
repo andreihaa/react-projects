@@ -49,3 +49,12 @@ export const getAllUsers = async (req,res, next ) => {
         next(err)
     } 
 }
+
+export const isAdmin = async (req, res, next) => {
+    console.log("Received request to /isAdmin");
+    if(req.user.isAdmin){
+        res.status(200).json(true);
+    }else{
+        res.status(200).json(false);
+    }
+}
